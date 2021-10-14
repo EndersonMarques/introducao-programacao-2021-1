@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-int eh_primo(int x){
-    
+int eh_primo(int x){ 
     if(x == 1){
         return 0;
     }
@@ -12,7 +11,6 @@ int eh_primo(int x){
         }
     }
     return 1;
-
 }
 
 int proxi_primo(int x){
