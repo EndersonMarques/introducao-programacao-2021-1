@@ -5,32 +5,28 @@ int main(){
 
     int numero;
     int contador = 0;
-    int frequencia = 0;
-    int contador_interador = 1;
     int novo_numero;
-    int novo_interador = 10;
+    int divisor, max_cont = 0;
     scanf("%d", &numero);
     novo_numero = numero;
 
     for(int i = 2; i <= numero; i++){
 
         while( novo_numero % i == 0){
-            printf("%d ", i);
-            novo_numero = novo_numero /i;
-            contador++;
-    
-            if(novo_interador > i){
-                novo_interador = i;
+            
+            if( novo_numero % i == 0){
                 contador++;
-            }
-
-            if( contador > frequencia){
-                frequencia = contador;
+                novo_numero = novo_numero /i;
             }
 
         }
-    }
-    printf("\n%d\n", contador_interador);
+        if( contador > max_cont) {
+            max_cont = contador;
+            divisor = i;
+        }
+        contador = 0;
 
+    }
+    printf("mostFrequent: %d frequency: %d\n", divisor, max_cont);
     return 0;
 }
