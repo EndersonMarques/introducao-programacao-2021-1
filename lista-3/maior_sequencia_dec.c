@@ -1,35 +1,39 @@
 #include <stdio.h>
 
-int main(){
+int main (){
 
-    int caso_teste, tam_seq, valores[100] = {0};
-    int i,j,k,l, m;
+    int caso_teste,seq_tam,contador=0, maior_sequencia =0;
+    int i, j, k,l, m ,n;
 
-    scanf("%d", &caso_teste);
+    scanf("%d",&caso_teste);
 
-    for (i=0; i<caso_teste; i++){
 
-        scanf("%d", &tam_seq);
-        for(j = 0; j < tam_seq; j++){
-            scanf("%d", &valores[j]);
+    for (i=0; i< caso_teste; i++){
+        int lista[120] = {0}, final[120] = {0},lista2[120] = {0};
+        scanf("%d", &seq_tam);  
+
+        for (j=0; j< seq_tam; j++){
+            scanf("%d", &lista[j]);
         }
 
-        for(k=0; k < tam_seq; k++){
-            if( valores[k] > (valores[k+1]) && k< tam_seq-1){
-                printf("%d ", valores[k]);
-                m = k;
+        //Encontrar sequencia
+        k=0;
+        for( j =0; j < seq_tam-1; j++){
+            
+            if( (lista[j] - lista[j+1]) >= 1 ){
+                final[j] = lista[j];
+                final[j+1] = lista[j+1];
+                contador++;
             }
-            else if(valores[m] > (valores[m+1]) && m< tam_seq){
-                printf("%d ", valores[m+1]);
-            }
-            else if( valores[k] < (valores[k+1] && k >0)){
-                break;
-            }
+            
         }
-         printf("\n");
+        
+        for( j=0; j< seq_tam; j++){
+            printf("%d ", final[j]);
+        }
 
+        printf("\n");
     }
-
 
     return 0;
 }
