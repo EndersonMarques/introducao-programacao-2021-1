@@ -7,6 +7,12 @@ int main()
 
     scanf("%c%c%c%c%c%c%c", &i0, &i1, &i2, &i3, &i4, &i5, &i6);
 
+    if (i5 != 'P')
+    {
+        printf("Invalido\n...Mas pelo menos ganhou um chute\n");
+        return 0;
+    }
+
     if (i0 == ' ' || i6 == ' ')
     {
         printf("Invalido\n");
