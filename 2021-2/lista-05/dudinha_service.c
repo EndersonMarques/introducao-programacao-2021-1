@@ -9,11 +9,15 @@ typedef struct
     int peso;
     float preco;
     int serial_number;
+    int centro;
 } Produto;
 typedef struct center
 {
     double pos_x;
     double pos_y;
+    double carro_x;
+    double carro_y;
+
 } Center;
 
 int existe(int x, int *array, int tam)
@@ -41,6 +45,8 @@ int main()
     for (i = 0; i < p; i++)
     {
         scanf("%lf %lf", &centros[i].pos_x, &centros[i].pos_y);
+        centros[i].carro_x = centros[i].pos_x;
+        centros[i].carro_y = centros[i].pos_y;
     }
 
     // lendo os N prudtos
@@ -80,6 +86,8 @@ int main()
             serial_array[i] = serial_temp;
             produtos[i].serial_number = serial_temp;
             // printf("nao xeiste %d\n", serial_temp);
+            k = 0;
+            produtos[i].centro = produtos[i].serial_number / (n / p);
         }
         else
         {
@@ -89,26 +97,44 @@ int main()
         }
     }
 
-    // pegando o serial medindo a distancia e usando
-    int serial;
-    double x, y;
-    for (i = 0; i < n; i++)
+    // Ordenar pelo serial
+    for (j = 0; j < n - 1; j++)
     {
-        scanf("%d", &serial);
-
-        // encontra produto pelo serial
-        for (j = 0; j < n; j++)
+        for (i = 0; i < n - 1; i++)
         {
-            if (produtos[j].serial == serial)
+            if (produtos[i].serial_number > produtos[i + 1].serial_number)
             {
-                break;
+                Produto aux = produtos[i];
+                produtos[i] = produtos[i + 1];
+                produtos[i + 1] = aux;
             }
         }
-        // scanf("%lf %lf", &x, &y);
-
-        int distancia = 0;
-        // distancia = (pow(x - centros[j].))
     }
+    int serial;
+    double x, y;
+    while (scanf("%d", &serial) != -1)
+    {
+        if (serial == -1)
+            break;
+
+        scanf("%lf %lf", &x, &y);
+        int menor = 9999999999999;
+        int idc_menor = 0;
+        for (j = 0; j < p; j++)
+        {
+            int distancia = pow(centros[j].carro_x - centros[produtos[serial].centro].pos_x, 2) + pow(centros[j].carro_y - centros[produtos[serial].centro].pos_y, 2);
+            if (distancia < menor)
+            {
+                menor = distancia;
+                idc_menor = j;
+            }
+        }
+        printf("delivered %s s. %d by vehicle %d\n", produtos[serial].nome, produtos[serial].serial_number, idc_menor + 1);
+        centros[idc_menor].carro_x = x;
+        centros[idc_menor].carro_y = y;
+    }
+
+    printf("Thank you for using this service. Bye!\n");
     // for (j = 0; j < n; j++)
     // {
     //     printf("Nome: %s || Seiral: %d\n", produtos[j].nome, produtos[j].serial_number);
