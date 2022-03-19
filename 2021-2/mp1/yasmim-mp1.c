@@ -20,14 +20,14 @@ int main()
     scanf("%d", &N_LINHAS);
     char codigo[N_LINHAS][TAM_CODE];
     Instrucao instrucao[N_LINHAS];
-    for (int i = 0; i < 100; i++)
-    {
-        registrador[i] = 0; // Inicialmente zerando o registrador pra serem usado nas funções
-        for (int j = 0; j < 100; j++)
-        {
-            codigo[i][j] = '\0'; // zerar o vetor de strings
-        }
-    }
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     registrador[i] = 0; // Inicialmente zerando o registrador pra serem usado nas funções
+    //     for (int j = 0; j < 100; j++)
+    //     {
+    //         codigo[i][j] = 0; // zerar o vetor de strings
+    //     }
+    // }
     for (int i = 0; i < N_LINHAS; i++)
     {
         valor[i] = 0; // zerar vetor valor (será usado quanro a função for ldv)
@@ -83,8 +83,7 @@ int main()
         if (instrucao[i].num_instrucao == 3)
         {
             // copia valor destino em origem
-            registrador[instrucao[i].origem] =
-                registrador[instrucao[i].destino];
+            registrador[instrucao[i].origem] = registrador[instrucao[i].destino];
         }
         if (instrucao[i].num_instrucao == 4)
         {
@@ -94,8 +93,7 @@ int main()
         if (instrucao[i].num_instrucao == 5)
         {
             // same obs! faznedo a subtração destino-origem-->destino
-            registrador[instrucao[i].destino] =
-                registrador[instrucao[i].destino] - registrador[instrucao[i].origem];
+            registrador[instrucao[i].destino] = registrador[instrucao[i].destino] - registrador[instrucao[i].origem];
         }
         if (instrucao[i].num_instrucao == 6)
         {
