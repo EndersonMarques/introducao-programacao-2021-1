@@ -61,13 +61,12 @@ int main()
         // se for uma mult
         else if (strcmp(instrucoes[i].inst_nome, "mul") == 0)
         {
-            printf("entrou mul\n");
             registradores[destino - 1] = registradores[destino - 1] * registradores[origem - 1];
         }
     }
     // Printando
     printf("Valores nos registradores:\n");
-    for (i = 0; i < 10; i++)
+    for (i = 0; i < 32; i++)
     {
         if (registradores[i] != 0)
             printf("register[%d] = %d\n", i + 1, registradores[i]);
